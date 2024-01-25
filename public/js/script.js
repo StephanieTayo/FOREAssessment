@@ -233,4 +233,17 @@ $(document).ready(function () {
     var dashboardDiv = document.getElementById("dashboard");
     dashboardDiv.append(title);
   }
+
+  var element = document.getElementById("dashboard");
+  var opt = {
+    margin: [0.5, 0.5, 0.5, 0.5],
+    filename: "Dashboard.pdf",
+    image: { type: "jpeg", quality: 0.98 },
+    html2canvas: { scale: 2, logging: true, dpi: 192, letterRendering: true },
+    jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
+  };
+
+  $("#downloadPdf").click(function () {
+    html2pdf().from(element).set(opt).save();
+  });
 });
