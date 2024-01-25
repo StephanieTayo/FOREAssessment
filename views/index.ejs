@@ -4,12 +4,30 @@
     <meta charset="UTF-8" />
     <title>Dashboard</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
+    <link rel="stylesheet" href="/css/styles.css" />
   </head>
 
   <body>
+    <div class="page-container">
+      <div class="button-container">
+        <button class="btn" id="downloadPdf">
+          <i class="fa fa-download"></i> Generate PDF
+        </button>
+      </div>
+      <div id="dashboard"></div>
+    </div>
     <script>
       var allCsvData = <%- JSON.stringify(formattedData) %>;
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+
     <script src="/js/script.js"></script>
   </body>
 </html>
