@@ -37,6 +37,7 @@ Node.js for server-side development <br>
 Express.js for web application framework <br>
 EJS for templating <br>
 PDF generation library, html2pdf <br>
+Jest for Functional Unit testing <br>
 
 ## Version Information for Key Components
 
@@ -80,9 +81,32 @@ function generateTable(departments, counter)
 
 ## Test Cases and Scenarios
 
-[List of test cases and scenarios]
+1. CSV Parsing
+
+Scenario ; Checks if it correctly parses CSV file into JavaScript objects
+
+2. Read Directories
+
+Scenario ; Checks if it correctly reads directory structure and finds CSV files
+
+3. Sanitize DirKey
+
+Scenario 1 ; Should normalize Windows path separators to Unix-like
+
+Scenario 2 ; Should remove leading current directory indicator "./"
+
+Scenario 3 ; Should remove leading parent directory indicator "../"
+
+Scenario 4 ; Should remove "data/" prefix if present
+
+...
+
+4. App Routes
+
+Scenario ; Should render the index view with the correct data
 
 # Testing Tools and Methodologies Used
 
-[Document testing tools and methodologies]
+Jest - Used for unit testing individual functions and components. This was selected as it provides a simple and fast testing framework for javascript applications.
 
+To test run; npm test
