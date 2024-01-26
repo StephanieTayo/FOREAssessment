@@ -85,3 +85,4 @@ function generateTable(departments, counter)
 # Testing Tools and Methodologies Used
 
 [Document testing tools and methodologies]
+
