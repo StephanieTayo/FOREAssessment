@@ -1,11 +1,6 @@
 $(document).ready(function () {
-  // Creates array of page titles for each section
-  let PageTitles = [
-    "Entire Organization",
-    "Entire Organization > Sales",
-    "Entire Organization > Marketing",
-    "Entire Organization > Customer Service",
-  ];
+  let mainTitle = "Entire Organization";
+  let subTitle = ["", "Sales", "Marketing", "Customer Service"];
 
   // Loops through the data and create dashboards
   let i = 0;
@@ -19,6 +14,7 @@ $(document).ready(function () {
       }
     }
     createDashboard(folderArray, i);
+
     i++;
   });
 
@@ -36,30 +32,45 @@ $(document).ready(function () {
     const headerRow = document.createElement("tr");
     thead.appendChild(headerRow);
 
+    // Defines the headers
     const headers = Object.keys(departments[0]);
 
+    // Append headers to the header row
     headers.forEach((headerText) => {
       const header = document.createElement("th");
       header.textContent = headerText;
       headerRow.appendChild(header);
     });
 
+    // Append the header row to the thead
     table.appendChild(thead);
 
     const tbody = document.createElement("tbody");
 
+    // Loops over each department and create a row
     departments.forEach((dept) => {
       const row = document.createElement("tr");
 
       headers.forEach((hearder) => {
         const nameCell = document.createElement("td");
-        nameCell.textContent = dept[hearder];
+        let cellValue = dept[hearder];
+
+        if (subTitle.includes(cellValue)) {
+          var anchor = document.createElement("a");
+          anchor.href = "#" + cellValue.replace(/ /g, "_").toLowerCase();
+          anchor.textContent = cellValue;
+          nameCell.appendChild(anchor);
+        } else {
+          nameCell.textContent = cellValue;
+        }
         row.appendChild(nameCell);
       });
 
+      // Append the row to the tbody
       tbody.appendChild(row);
     });
 
+    // Append the tbody to the table
     table.appendChild(tbody);
 
     sectionDiv.appendChild(table);
@@ -69,9 +80,9 @@ $(document).ready(function () {
   //creates charts container
   function createChartsContainer(tenureData, turnoverData, counter) {
     const chartsContainer = document.createElement("div");
-    chartsContainer.className = "charts-container";
+    chartsContainer.className = "charts-container"; // Use this class to apply flexbox styling
 
-    // turnover chart
+    //turnover chart div and canvas
     const turnoverChartDiv = document.createElement("div");
     turnoverChartDiv.className = "chart";
     const turnoverChartCanvas = document.createElement("canvas");
@@ -79,7 +90,7 @@ $(document).ready(function () {
     turnoverChartDiv.appendChild(turnoverChartCanvas);
     chartsContainer.appendChild(turnoverChartDiv);
 
-    // tenure chart
+    //tenure chart div and canvas
     const tenureChartDiv = document.createElement("div");
     tenureChartDiv.className = "chart";
     const tenureChartCanvas = document.createElement("canvas");
@@ -89,13 +100,14 @@ $(document).ready(function () {
 
     document.body.appendChild(chartsContainer);
 
+    // generate the charts
     generateTurnoverChart(turnoverData, "turnoverChart_" + counter);
     generateTenureChart(tenureData, "tenureChart_" + counter);
 
     return chartsContainer;
   }
 
-  // generate turnover chart using Chart.js
+  // Generates turnover chart
   function generateTurnoverChart(chartData, chartId) {
     const ctx = document.getElementById(chartId).getContext("2d");
     let transformedData = transformTurnoverData(chartData);
@@ -137,7 +149,7 @@ $(document).ready(function () {
     });
   }
 
-  // generate tenure chart using Chart.js
+  // Generates tenure comparison bar chart
   function generateTenureChart(chartData, chartId) {
     const tenureCtx = document.getElementById(chartId).getContext("2d");
     let transformedData = transformTenureData(chartData);
@@ -164,7 +176,6 @@ $(document).ready(function () {
     });
   }
 
-  //transforms turnover data for chart
   function transformTurnoverData(sampleData) {
     const datasetsMap = {};
 
@@ -180,6 +191,7 @@ $(document).ready(function () {
       datasetsMap[item.y].data.push({ x: item.x, y: parseFloat(item.series) });
     });
 
+    // this will each dataset's data by the 'x' value (date)
     for (const dataset in datasetsMap) {
       datasetsMap[dataset].data.sort((a, b) => new Date(a.x) - new Date(b.x));
     }
@@ -190,7 +202,6 @@ $(document).ready(function () {
     };
   }
 
-  // transform tenure data for chart
   function transformTenureData(sampleData) {
     const companyData = sampleData
       .filter((item) => item.series === "Company")
@@ -227,28 +238,44 @@ $(document).ready(function () {
     return color;
   }
 
-  // creates a dashboard with tables and charts
+  // this is the main function to assemble the dashboard
   function createDashboard(data, counter) {
     var dashboardDiv = $("#dashboard");
-    addTitleToDashboard(PageTitles[counter]);
+
+    let PageTitle = subTitle[counter];
+
+    addTitleToDashboard(mainTitle, PageTitle);
     dashboardDiv.append(generateTable(data[0], counter));
     dashboardDiv.append(generateTable(data[1], counter));
     dashboardDiv.append(createChartsContainer(data[2], data[3], counter));
   }
 
-  function addTitleToDashboard(titleText) {
-    var title = document.createElement("h2");
-    title.textContent = titleText;
-    title.className = "dashboard-title";
-
+  function addTitleToDashboard(mainTitle, titleText) {
     var dashboardDiv = document.getElementById("dashboard");
-    dashboardDiv.append(title);
+    var title = document.createElement("span");
+
+    if (titleText != "") {
+      var anchor = document.createElement("a");
+      anchor.href = "#" + mainTitle.replace(/ /g, "_").toLowerCase();
+      anchor.textContent = mainTitle;
+      anchor.className = "title-anchor";
+
+      dashboardDiv.appendChild(anchor);
+      title.textContent = " > " + titleText;
+      title.className = "title-subtitle";
+      title.id = titleText.replace(/ /g, "_").toLowerCase();
+    } else {
+      title.id = mainTitle.replace(/ /g, "_").toLowerCase();
+      title.textContent = mainTitle;
+      title.className = "title";
+    }
+
+    dashboardDiv.appendChild(title);
   }
 
-  // setting the configuration for PDF download, set to landscape as potrait will squeeze the content
   var element = document.getElementById("dashboard");
   var opt = {
-    margin: [0.5, 0.5, 0.5, 0.5],
+    margin: [0.5, 0.5, 0.5, 0.5], // top, left, bottom, right margins
     filename: "Dashboard.pdf",
     image: { type: "jpeg", quality: 0.98 },
     html2canvas: { scale: 2, logging: true, dpi: 192, letterRendering: true },
