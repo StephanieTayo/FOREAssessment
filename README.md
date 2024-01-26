@@ -32,24 +32,30 @@ The software is deployed as a web application accessible through a web server. T
 
 ## Technical Stack
 
-Technologies, Frameworks, and Languages Used \n
-Node.js for server-side development
-Express.js for web application framework
-EJS for templating
-PDF generation library, html2pdf
+Technologies, Frameworks, and Languages Used <br>
+Node.js for server-side development <br>
+Express.js for web application framework <br>
+EJS for templating <br>
+PDF generation library, html2pdf <br>
 
 ## Version Information for Key Components
 
 Node.js version v18.14.2
+
 Express.js version ^4.18.2
+
 csv-parser ^3.0.0
 
 ## Installation Guide
 
 Step-by-Step Instructions
+
 Clone the repository.
+
 Install Node.js and npm.
+
 Install project dependencies using npm install.
+
 Start the project with npm start
 
 # Usage Guide
@@ -57,6 +63,7 @@ Start the project with npm start
 ## Instructions on How to Use the Software
 
 Access the web application through a browser.
+
 Upload CSV files in data folder for data parsing.
 
 # Code Documentation
@@ -64,7 +71,9 @@ Upload CSV files in data folder for data parsing.
 ## Inline Comments
 
 For example;
+
 // generates HTML table for department data
+
 function generateTable(departments, counter)
 
 # Testing
