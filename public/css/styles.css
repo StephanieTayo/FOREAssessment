@@ -1,109 +1,131 @@
 /* styles.css */
 #dashboard {
-    font-family: Arial, sans-serif;
-  }
-  
-  #headcount p {
-    font-weight: bold;
-  }
-  
-  #department-data {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-  }
-  
-  #department-data th,
-  #department-data td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
-  }
-  
-  #charts {
-    display: flex;
-    justify-content: space-around;
-    margin-top: 20px;
-  }
-  
-  tbody tr {
-    background-color: #f3f3f3;
-  }
-  
-  body,
-  html {
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #f7f7f7;
-  }
-  
-  .page-container {
-    width: 80%;
-    max-width: 1200px;
-    border: 1px solid #ddd; 
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
-    padding: 20px; 
-    background: #fff; 
-  }
-  
-  .styled-table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  .styled-table th,
-  .styled-table td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
-  }
-  
-  .styled-table thead {
-    background-color: #c9daf8;
-  }
-  
-  .table-section {
-    margin-bottom: 20px; 
-  }
-  
-  .chart {
-    flex: 1; 
-    margin: 10px;
-    min-width: 300px; 
-  }
-  
-  
-  .charts-container {
-    display: flex;
-    justify-content: space-between; 
-    align-items: stretch; 
-    min-height: 400px; 
-  }
-  
-  .btn {
-    background-color: DodgerBlue;
-    border: none;
-    color: white;
-    padding: 12px 30px;
-    cursor: pointer;
-    font-size: 20px;
-  }
-  
+  font-family: Arial, sans-serif;
+}
 
-  .btn:hover {
-    background-color: RoyalBlue;
-  }
-  
-  .button-container {
-    display: flex;
-    justify-content: flex-end; 
-    padding: 16px;
-  }
+#headcount p {
+  font-weight: bold;
+}
 
-  #downloadPdf {
-    width: auto;
-    padding: 8px 16px; 
-  }
-  
+#department-data {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+#department-data th,
+#department-data td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+#charts {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+tbody tr {
+  background-color: #f3f3f3;
+}
+
+body,
+html {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f7f7f7;
+}
+
+.page-container {
+  width: 80%;
+  max-width: 1200px;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  background: #fff;
+}
+
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.styled-table th,
+.styled-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.styled-table thead {
+  background-color: #c9daf8;
+}
+
+.table-section {
+  margin-top: 15px;
+  margin-bottom: 20px;
+}
+
+.chart {
+  flex: 1;
+  margin: 10px;
+  min-width: 300px;
+}
+
+.charts-container {
+  display: flex;
+  justify-content: space-between; 
+  align-items: stretch; 
+  min-height: 400px; 
+}
+
+.btn {
+  background-color: DodgerBlue;
+  border: none;
+  color: white;
+  padding: 12px 30px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+
+.btn:hover {
+  background-color: RoyalBlue;
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-end; /* button to the right */
+  padding: 16px; 
+}
+
+#downloadPdf {
+  width: auto;
+  padding: 8px 16px; 
+  border-radius: 4px;
+}
+
+.title-anchor,
+.title-subtitle,
+.title {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #595959;
+}
+
+a {
+  color: #1f97a7;
+}
+
+.title-anchor {
+  color: #1f97a7; /* Change to match desired link color */
+  text-decoration: none; /* Removes underline from links by default */
+}
+
+.title-anchor:hover {
+  text-decoration: underline; /* Adds underline on hover */
+}
