@@ -32,7 +32,7 @@ The software is deployed as a web application accessible through a web server. T
 
 ## Technical Stack
 
-Technologies, Frameworks, and Languages Used
+Technologies, Frameworks, and Languages Used 
 Node.js for server-side development
 Express.js for web application framework
 EJS for templating
