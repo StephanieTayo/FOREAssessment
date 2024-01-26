@@ -119,6 +119,7 @@ html {
 
 a {
   color: #1f97a7;
+  text-decoration: none;
 }
 
 .title-anchor {
@@ -128,4 +129,8 @@ a {
 
 .title-anchor:hover {
   text-decoration: underline; /* Adds underline on hover */
+}
+
+a:hover {
+  text-decoration: underline;
 }
