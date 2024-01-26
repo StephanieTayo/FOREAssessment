@@ -35,6 +35,7 @@ function readDirectories(dirPath) {
 
 const csvDirectories = readDirectories(dataFolderPath);
 
+// parse data from a CSV file
 function parseCSV(filePath) {
   return new Promise((resolve, reject) => {
     const results = [];
