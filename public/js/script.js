@@ -1,4 +1,5 @@
 $(document).ready(function () {
+  // Creates array of page titles for each section
   let PageTitles = [
     "Entire Organization",
     "Entire Organization > Sales",
@@ -6,6 +7,7 @@ $(document).ready(function () {
     "Entire Organization > Customer Service",
   ];
 
+  // Loops through the data and create dashboards
   let i = 0;
   Object.keys(allCsvData).forEach((key) => {
     let folder = allCsvData[key];
@@ -20,6 +22,7 @@ $(document).ready(function () {
     i++;
   });
 
+  //  generates HTML table for department data
   function generateTable(departments, counter) {
     const sectionDiv = document.createElement("div");
     sectionDiv.className = "table-section";
@@ -63,10 +66,12 @@ $(document).ready(function () {
     return sectionDiv;
   }
 
+  //creates charts container
   function createChartsContainer(tenureData, turnoverData, counter) {
     const chartsContainer = document.createElement("div");
     chartsContainer.className = "charts-container";
 
+    // turnover chart
     const turnoverChartDiv = document.createElement("div");
     turnoverChartDiv.className = "chart";
     const turnoverChartCanvas = document.createElement("canvas");
@@ -74,6 +79,7 @@ $(document).ready(function () {
     turnoverChartDiv.appendChild(turnoverChartCanvas);
     chartsContainer.appendChild(turnoverChartDiv);
 
+    // tenure chart
     const tenureChartDiv = document.createElement("div");
     tenureChartDiv.className = "chart";
     const tenureChartCanvas = document.createElement("canvas");
@@ -89,6 +95,7 @@ $(document).ready(function () {
     return chartsContainer;
   }
 
+  // generate turnover chart using Chart.js
   function generateTurnoverChart(chartData, chartId) {
     const ctx = document.getElementById(chartId).getContext("2d");
     let transformedData = transformTurnoverData(chartData);
@@ -130,6 +137,7 @@ $(document).ready(function () {
     });
   }
 
+  // generate tenure chart using Chart.js
   function generateTenureChart(chartData, chartId) {
     const tenureCtx = document.getElementById(chartId).getContext("2d");
     let transformedData = transformTenureData(chartData);
@@ -156,6 +164,7 @@ $(document).ready(function () {
     });
   }
 
+  //transforms turnover data for chart
   function transformTurnoverData(sampleData) {
     const datasetsMap = {};
 
@@ -181,6 +190,7 @@ $(document).ready(function () {
     };
   }
 
+  // transform tenure data for chart
   function transformTenureData(sampleData) {
     const companyData = sampleData
       .filter((item) => item.series === "Company")
@@ -217,6 +227,7 @@ $(document).ready(function () {
     return color;
   }
 
+  // creates a dashboard with tables and charts
   function createDashboard(data, counter) {
     var dashboardDiv = $("#dashboard");
     addTitleToDashboard(PageTitles[counter]);
