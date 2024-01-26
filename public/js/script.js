@@ -245,13 +245,14 @@ $(document).ready(function () {
     dashboardDiv.append(title);
   }
 
+  // setting the configuration for PDF download, set to landscape as potrait will squeeze the content
   var element = document.getElementById("dashboard");
   var opt = {
     margin: [0.5, 0.5, 0.5, 0.5],
     filename: "Dashboard.pdf",
     image: { type: "jpeg", quality: 0.98 },
     html2canvas: { scale: 2, logging: true, dpi: 192, letterRendering: true },
-    jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
+    jsPDF: { unit: "in", format: "letter", orientation: "landscape" },
   };
 
   $("#downloadPdf").click(function () {
